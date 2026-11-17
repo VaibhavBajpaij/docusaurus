@@ -174,6 +174,16 @@ describe('createExcerpt', () => {
     );
   });
 
+  it('preserves text between colons that are not emoji shortcodes', () => {
+    expect(
+      createExcerpt(dedent`
+          We have introduced two primary options: option A, option B: final choice.
+        `),
+    ).toBe(
+      'We have introduced two primary options: option A, option B: final choice.',
+    );
+  });
+
   it('creates excerpt for content with imports/exports declarations, with CRLF line endings', () => {
     expect(
       createExcerpt(
